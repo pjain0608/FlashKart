@@ -1,0 +1,268 @@
+/* General Styling */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url("https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2655.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* Header Styling */
+
+header {
+    width: 100%;
+    height: 6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1%;
+    background-color: rgba(255, 255, 255, 0.8); /* Add a translucent background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for elevation */
+    margin-bottom: 1rem;
+}
+
+.header-left {
+    width: max-content;
+    display: flex;
+    align-items: center;
+    gap: 2%;
+}
+
+.header-left img {
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+}
+
+.header-left h2 sup {
+    font-size: 10px;
+}
+
+.header-middle {
+    width: 50%;
+}
+
+.header-right {
+    width: 20%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.header-link a img {
+    height: 2rem;
+    width: 2rem;
+}
+
+.header-link {
+    display: flex;
+    align-items: center;
+}
+
+.header-link p {
+    margin-right: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.header-link a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.header-link a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+.header-link p,
+.header-link a {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Styles for the dropdown */
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    padding: 10px;
+    border-radius: 5px;
+    top: 100%; /* Position dropdown below the user icon */
+    left: 50%; /* Align dropdown horizontally to the icon center */
+    transform: translateX(-70%); /* Center dropdown */
+    min-width: 160px;
+    max-width: 250px; /* Prevent dropdown from growing too wide */
+    white-space: nowrap; /* Prevent wrapping of text */
+}
+
+/* Show dropdown on hover */
+.user-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Profile icon styles */
+.user-dropdown img {
+    cursor: pointer;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+}
+
+/* Links in the dropdown */
+.dropdown-content a {
+    display: block;
+    padding: 8px 10px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 3px;
+}
+
+.dropdown-content a:hover {
+    background-color: #f0f0f0;
+    color: #0056b3;
+}
+
+/* Prevent dropdown from overflowing the screen */
+@media (max-width: 768px) {
+    .dropdown-content {
+        left: auto; /* Reset alignment for smaller screens */
+        transform: none; /* Disable centering for small viewports */
+    }
+}
+
+/* Cart Data */
+
+/* Cart Container */
+.cart {
+    max-width: 800px;
+    margin: 2rem auto;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.img-cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.img-cart img {
+    height: 5rem;
+    width: 5rem;
+}
+
+/* Table Styles */
+/* Enhanced Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.9); /* Translucent background */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Prevent overflow at the edges */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+thead th {
+    background-color: #007bff; /* Primary color for the header */
+    color: white;
+    padding: 1rem;
+    text-align: left;
+    font-weight: bold;
+    border: none;
+}
+
+tbody td {
+    padding: 1rem;
+    text-align: left;
+    color: #333;
+    border: none; /* Remove cell borders */
+}
+
+tbody tr:nth-child(even) {
+    background-color: rgba(240, 240, 240, 0.9); /* Light gray for alternate rows */
+}
+
+tbody tr:hover {
+    background-color: rgba(0, 123, 255, 0.1); /* Highlight on hover */
+}
+
+tbody td a {
+    color: #d9534f; /* Red for remove links */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+tbody td a:hover {
+    text-decoration: underline;
+    color: #c9302c; /* Darker red on hover */
+}
+
+/* Add subtle borders between rows */
+tbody tr:not(:last-child) td {
+    border-bottom: 1px solid #ddd;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    table {
+        font-size: 14px; /* Slightly smaller text on smaller screens */
+    }
+    thead th, tbody td {
+        padding: 0.75rem; /* Adjust padding for compactness */
+    }
+}
+
+
+/* Total Price */
+.cart h3 {
+    text-align: right;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Buttons */
+button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+a button {
+    text-decoration: none;
+    font-family: inherit;
+}
+
+button + button {
+    margin-left: 1rem;
+}

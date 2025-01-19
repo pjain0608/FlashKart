@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <link rel="stylesheet" href="{% static 'css/product_list.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/Flashkart_Logo.webp' %}">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="{% static 'images/Flashkart_Logo.webp' %}" alt="Logo" title="FlashKart">
+            <h2>FlashKart<sup>TM</sup></h2>
+        </div>
+        <div class="header-middle">
+            <div class="search-bar">
+                <form action="" method="GET" class="search-form">
+                    <img src="https://cdn-icons-png.flaticon.com/128/54/54481.png" alt="Search Icon" title="Search">
+                    <input type="text" name="search" class="search-input" placeholder="Search Over Wide Range of Products">
+                </form>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="header-link">
+                <a href="{% url 'home' %}">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2550/2550430.png" alt="Home" title="Home">
+                </a>
+            </div>
+            <div class="header-link">
+                <a href="{% url 'cart_view' %}">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2331/2331970.png" alt="Cart" title="My Cart">
+                </a>
+            </div>
+            <div class="header-link">
+                <div class="header-link">
+                    {% if user.is_authenticated %}
+                    <div class="user-dropdown">
+                        <img src="https://cdn-icons-png.flaticon.com/128/15315/15315520.png" alt="User" title="My Profile">
+                        <div class="dropdown-content">
+                            <a href="{% url 'user_profile' %}"><strong>{{ user.buyerprofile.name }}</strong></a>
+                            <a href="{% url 'order_history' %}">Past Orders</a>
+                            <a href="{% url 'logout' %}">Logout</a>
+                        </div>
+                    </div>
+                    {% else %}
+                        <a href="{% url 'login' %}">Login</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="category-navbar">
+        <div>
+            <a href="{% url 'home' %}">All Categories</a>
+        </div>
+        {% for category in categories %}
+        <div>
+            <a href="?category={{ category.id }}">{{ category.name }}</a>
+        </div>
+        {% endfor %}
+    </nav>
+
+    <section>
+        <div class="product-list">
+            <div class="products">
+                {% for product in products %}
+                    <div class="product-item">
+                        <div class="product-img">
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}" title="{{ product.name }}">
+                        </div>
+                        <div class="product-title">
+                            <h3 title="{{ product.name }}">{{ product.name }}</h3>
+                        </div>
+                        <div class="product-description">
+                            <p>{{ product.description }}</p>
+                        </div>
+                        <div class="product-price">
+                            <p><strong>₹{{ product.price }}</strong></p>
+                        </div>
+                        <div class="product-add">
+                            <form method="POST" action="{% url 'add_to_cart' product.id %}">
+                                {% csrf_token %}
+                                <div class="form">
+                                    <div class="quantity-control">
+                                        <button type="button" class="quantity-btn decrease">-</button>
+                                        <input type="number" name="quantity" class="quantity" value="1" min="1" readonly>
+                                        <button type="button" class="quantity-btn increase">+</button>
+                                    </div>
+                                </div>
+                                <div class="add">
+                                    <button type="submit">Add to Cart</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Select all the quantity buttons
+        const decreaseButtons = document.querySelectorAll('.decrease');
+        const increaseButtons = document.querySelectorAll('.increase');
+
+        // Loop through each button and attach event listeners
+        decreaseButtons.forEach((button) => {
+            button.addEventListener('click', function() {
+                const quantityInput = this.parentElement.querySelector('.quantity');
+                let quantity = parseInt(quantityInput.value);
+                if (quantity > 1) {
+                    quantityInput.value = quantity - 1;
+                }
+            });
+        });
+
+        increaseButtons.forEach((button) => {
+            button.addEventListener('click', function() {
+                const quantityInput = this.parentElement.querySelector('.quantity');
+                let quantity = parseInt(quantityInput.value);
+                quantityInput.value = quantity + 1;
+            });
+        });
+    </script>
+</body>
+</html>

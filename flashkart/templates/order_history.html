@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Past Orders</title>
+    <link rel="stylesheet" href="{% static 'css/order_history.css' %}">
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/128/1090/1090965.png">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="{% static 'images/Flashkart_Logo.webp' %}" alt="Logo" title="FlashKart">
+            <h2>FlashKart<sup>TM</sup></h2>
+        </div>
+        <div class="header-middle">
+            <!-- Empty section for possible future content -->
+        </div>
+        <div class="header-right">
+            <div class="header-link">
+                <a href="{% url 'home' %}">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2550/2550430.png" alt="Home" title="Home">
+                </a>
+            </div>
+            <div class="header-link">
+                <a href="{% url 'cart_view' %}">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2331/2331970.png" alt="Cart" title="My Cart">
+                </a>
+            </div>
+            <div class="header-link">
+                {% if user.is_authenticated %}
+                    <div class="user-dropdown">
+                        <img src="https://cdn-icons-png.flaticon.com/128/15315/15315520.png" alt="User" title="My Profile">
+                        <div class="dropdown-content">
+                            <a href="{% url 'user_profile' %}"><strong>{{ user.buyerprofile.name }}</strong></a>
+                            <a href="{% url 'logout' %}">Logout</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="{% url 'login' %}">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+    
+    <div class="order-history">
+        <h1>Your Past Orders</h1>
+
+        {% if orders %}
+            <ul>
+                {% for order in orders %}
+                    <li>
+                        <strong>Order ID:</strong> {{ order.order_id }} - 
+                        <strong>Total:</strong> ₹{{ order.total_price }} - 
+                        <strong>Status:</strong> {{ order.status }}
+                        <br>
+                        <a href="{% url 'order_confirmation' order.id %}">View Order</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Your order history is empty. <a href="{% url 'home' %}">Browse products</a> to make your first purchase.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

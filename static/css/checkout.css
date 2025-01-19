@@ -1,0 +1,360 @@
+/* General Styling */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url("https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2655.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* Header Styling */
+
+header {
+    width: 100%;
+    height: 6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1%;
+    background-color: rgba(255, 255, 255, 0.8); /* Add a translucent background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for elevation */
+    margin-bottom: 1rem;
+}
+
+.header-left {
+    width: max-content;
+    display: flex;
+    align-items: center;
+    gap: 2%;
+}
+
+.header-left img {
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+}
+
+.header-left h2 sup {
+    font-size: 10px;
+}
+
+.header-middle {
+    width: 50%;
+}
+
+/* Search Bar */
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.search-bar form input:hover {
+    border: none;
+}
+
+.search-input {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 4px;
+    flex-grow: 1;
+    margin-left: 10px;
+    color: #333;
+    background-color: transparent;
+    border: none;
+}
+
+.search-input::placeholder {
+    color: #999;
+}
+
+.search-form img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.search-button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+}
+
+.header-right {
+    width: 20%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.header-link a img {
+    height: 2rem;
+    width: 2rem;
+}
+
+.header-link {
+    display: flex;
+    align-items: center;
+}
+
+.header-link p {
+    margin-right: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.header-link a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.header-link a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+.header-link p,
+.header-link a {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Styles for the dropdown */
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    padding: 10px;
+    border-radius: 5px;
+    top: 100%; /* Position dropdown below the user icon */
+    left: 50%; /* Align dropdown horizontally to the icon center */
+    transform: translateX(-70%); /* Center dropdown */
+    min-width: 160px;
+    max-width: 250px; /* Prevent dropdown from growing too wide */
+    white-space: nowrap; /* Prevent wrapping of text */
+}
+
+/* Show dropdown on hover */
+.user-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Profile icon styles */
+.user-dropdown img {
+    cursor: pointer;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+}
+
+/* Links in the dropdown */
+.dropdown-content a {
+    display: block;
+    padding: 8px 10px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 3px;
+}
+
+.dropdown-content a:hover {
+    background-color: #f0f0f0;
+    color: #0056b3;
+}
+
+/* Prevent dropdown from overflowing the screen */
+@media (max-width: 768px) {
+    .dropdown-content {
+        left: auto; /* Reset alignment for smaller screens */
+        transform: none; /* Disable centering for small viewports */
+    }
+}
+
+.contents {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 35%;
+    border: 2px solid black;
+    border-radius: 10%;
+    padding: 2rem;
+    background-color: whitesmoke;
+}
+
+.img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.img-container img {
+    height: 6rem;
+    width: 6rem;
+}
+
+/* Total Price */
+
+.total {
+    /* padding: 0.5rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.total-head h2 {
+    font-size: 1.5rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+/* Form Styling */
+form {
+    margin-top: 1rem;
+    text-align: left;
+}
+
+/* Form Labels */
+form label {
+    display: block;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+/* Input Fields and Dropdown */
+form input,
+form select {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+form input:focus,
+form select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
+}
+
+form select {
+    background-color: #f8f8f8;
+    cursor: pointer;
+}
+
+/* Card Details Section */
+#card_details {
+    display: none;
+    margin-bottom: 1rem;
+}
+
+/* Button Styling */
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button button {
+    width: 50%;
+    padding: 0.8rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #0056b3;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.button button:hover {
+    background-color: #23ca09;
+    transform: translateY(-2px);
+}
+
+.button a {
+    margin-top: 1rem;
+}
+
+/* Success and Error Messages */
+p.success {
+    color: #28a745;
+    font-weight: bold;
+    text-align: center;
+}
+
+p.error {
+    color: #dc3545;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Fade-in Animation for Card Details */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    .container h1 {
+        font-size: 1.8rem;
+    }
+
+    form button {
+        font-size: 1rem;
+    }
+}

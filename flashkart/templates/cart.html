@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="{% static 'images/Flashkart_Logo.webp' %}" alt="Logo" title="FlashKart">
+            <h2>FlashKart<sup>TM</sup></h2>
+        </div>
+        <div class="header-middle">
+            
+        </div>
+        <div class="header-right">
+            <div class="header-link">
+                <a href="{% url 'home' %}">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2550/2550430.png" alt="Home" title="Home">
+                </a>
+            </div>
+            <div class="header-link">
+                <a href="{% url 'cart_view' %}">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2331/2331970.png" alt="Cart" title="My Cart">
+                </a>
+            </div>
+            <div class="header-link">
+                <div class="header-link">
+                    {% if user.is_authenticated %}
+                    <div class="user-dropdown">
+                        <!-- <p>{{ user.username }}</p> User's name -->
+                        <img src="https://cdn-icons-png.flaticon.com/128/15315/15315520.png" alt="User" title="My Profile">
+                        <div class="dropdown-content">
+                            <a href="{% url 'user_profile' %}"><strong>{{ user.buyerprofile.name }}</strong></a>
+                            <a href="{% url 'logout' %}">Logout</a>
+                        </div>
+                    </div>
+                    {% else %}
+                        <a href="{% url 'login' %}">Login</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="cart">
+        <!-- <h1>Your Cart</h1> -->
+         <div class="img-cart">
+            <img src="https://cdn-icons-png.flaticon.com/128/4290/4290854.png" alt="Cart" title="Cart">
+         </div>
+        
+        {% if cart_items %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th style="text-align: center;">🗑️</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart_items %}
+                        <tr>
+                            <td>{{ item.product.name }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>₹{{ item.product.price }}</td>
+                            <td style="text-align: center;">
+                                <!-- Option to remove item from cart -->
+                                <a href="{% url 'remove_from_cart' item.id %}">Remove</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <h3>Total Price: ₹{{ total_price|floatformat:2 }}</h3> <!-- Displaying total price passed from the view -->
+
+            <!-- Checkout and back buttons -->
+            <a href="{% url 'home' %}"><button>Back to Shopping</button></a>  <!-- Back to the product list -->
+            <a href="{% url 'checkout' %}"><button>Proceed to Checkout</button></a> <!-- Proceed to checkout -->
+        {% else %}
+            <p>Your cart is empty. <a href="{% url 'home' %}">Browse products</a> to add items to your cart.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

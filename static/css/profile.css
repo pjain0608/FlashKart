@@ -1,0 +1,270 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', Helvetica, sans-serif;
+    background-image: url("https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2655.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: #333; /* Text color for better readability */
+}
+
+header {
+    width: 100%;
+    height: 6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1%;
+    background-color: rgba(255, 255, 255, 0.8); /* Add a translucent background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for elevation */
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-left img {
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow to the logo */
+}
+
+.header-left h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #007bff; /* A modern blue shade */
+}
+
+.header-left h2 sup {
+    font-size: 0.8rem;
+    color: #555;
+}
+
+.header-middle {
+    flex-grow: 1;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-right img {
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+.header-right h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 10px;
+    border-radius: 5px;
+    top: 100%; /* Make the dropdown appear below the user name */
+    left: 0;  /* Align the dropdown to the left of the parent container */
+    width: auto; /* Ensure the width doesn't overflow */
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.user-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.user-dropdown .dropdown-content {
+    max-width: 210px; /* Set a maximum width */
+    left: 0; /* Align the dropdown to the left of the parent element */
+    transform: translateX(-40%); /* Move the dropdown to the left if overflowing */
+}
+
+.user-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.dropdown-content a:hover {
+    text-decoration: underline;
+}
+
+/* Profile Section Styling */
+.profile-section {
+    padding: 40px 5%;
+    margin-top: 2rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    max-width: 800px;
+    margin: auto;
+    margin-top: 3rem;
+}
+
+.profile-details {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.profile-details h3 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.profile-details p {
+    font-size: 18px;
+    margin: 12px 0;
+    color: #333;
+}
+
+.profile-details p strong {
+    color: #007bff;
+}
+
+/* Card Details Styling */
+
+.card {
+    padding: 1rem;
+    height: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 25%;
+}
+
+.card-body {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-number {
+    display: flex;
+    justify-content: center;
+    gap: 20%;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.card-data {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-bottom {
+    height: 25%;
+}
+
+.card-header img {
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+.card-details1 {
+    width: 70%;
+    border: 2px solid black;
+    height: 15rem;
+    background-image: url("https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjEwMTYtYy0wOF8xLWtzaDZtemEzLmpwZw.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 1rem;
+    border-radius: 1rem;
+    color: #ffffff;
+}
+
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.card-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.card-body p {
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.card-body p strong {
+    color: #ffffff;
+}
+
+.cvv-field:hover .cvv {
+    color: #ffffff;
+    width: fit-content;
+}
+
+.cvv {
+    display: inline-block;
+    font-weight: bold;
+    color: #ffffff;
+    width: fit-content;
+}
+
+/* Back Button Styling */
+.back-button {
+    display: flex;
+    justify-content: center;
+}
+
+.back-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-align: center;
+}
+
+.back-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}

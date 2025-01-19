@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlashKart | Checkout</title>
+    <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/128/5790/5790705.png">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="{% static 'images/Flashkart_Logo.webp' %}" alt="">
+            <h2>FlashKart<sup>TM</sup></h2>
+        </div>
+        <div class="header-middle">
+            
+        </div>
+        <div class="header-right">
+            <div class="header-link">
+                <a href="{% url 'home' %}">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2550/2550430.png" alt="">
+                </a>
+            </div>
+            <div class="header-link">
+                <a href="{% url 'cart_view' %}">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2331/2331970.png" alt="">
+                </a>
+            </div>
+            <div class="header-link">
+                <div class="header-link">
+                    {% if user.is_authenticated %}
+                    <div class="user-dropdown">
+                        <img src="https://cdn-icons-png.flaticon.com/128/15315/15315520.png" alt="">
+                        <div class="dropdown-content">
+                            <a href="{% url 'user_profile' %}"><strong>{{ user.buyerprofile.name }}</strong></a>
+                            <a href="{% url 'order_history' %}">Past Orders</a>
+                            <a href="{% url 'logout' %}">Logout</a>
+                        </div>
+                    </div>
+                    {% else %}
+                        <a href="{% url 'login' %}">Login</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="contents">
+        <div class="container">
+            <div class="img-container">
+                <img src="https://cdn-icons-png.flaticon.com/128/12534/12534924.png" alt="">
+            </div>
+            <div class="total">
+                <div class="total-head">
+                    <h2>Order Total: ₹{{ cart.total_price }}</h2>
+                </div>
+            </div>
+
+            <form method="post" action="{% url 'checkout' %}">
+                {% csrf_token %}
+                
+                <label for="payment_method">Choose Payment Method:</label>
+                <select id="payment_method" name="payment_method" required>
+                    <option value="Card" selected>Card Payment</option>
+                    <option value="COD">Cash on Delivery</option>
+                </select>
+
+                <!-- Card Details Section -->
+                <div id="card_details">
+                    <label>Enter last 4 Digits of card:</label>
+                    <input type="text" name="last_four_digits" maxlength="4" pattern="\d{4}" placeholder="XXXX" required>
+                    <label>CVV:</label>
+                    <input type="password" name="cvv" maxlength="3" pattern="\d{3}" placeholder="***" required>
+                </div>
+
+                <div class="button">
+                    <button type="submit">Confirm Payment</button>
+                </div>
+            </form>
+            <div class="button">
+                <a href="{% url 'cart_view' %}" class="back-button">> Back to Cart <</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Display success and error messages -->
+    <div>
+        {% for message in messages %}
+            <p class="{{ message.tags }}">{{ message }}</p>
+        {% endfor %}
+    </div>
+
+    <script>
+        const paymentMethod = document.getElementById("payment_method");
+        const cardDetails = document.getElementById("card_details");
+        const lastFourDigits = document.querySelector('input[name="last_four_digits"]');
+        const cvv = document.querySelector('input[name="cvv"]');
+    
+        function togglePaymentMethod() {
+            if (paymentMethod.value === "Card") {
+                cardDetails.style.display = "block";
+                lastFourDigits.required = true;
+                cvv.required = true;
+            } else {
+                cardDetails.style.display = "none";
+                lastFourDigits.required = false;
+                cvv.required = false;
+    
+                // Clear hidden fields
+                lastFourDigits.value = '';
+                cvv.value = '';
+            }
+        }
+    
+        paymentMethod.addEventListener("change", togglePaymentMethod);
+        togglePaymentMethod(); // Initialize on page load
+    </script>
+    
+</body>
+</html>

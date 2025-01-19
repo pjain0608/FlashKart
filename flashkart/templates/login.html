@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/128/15315/15315520.png">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="{% static 'images/Flashkart_Logo.webp' %}" alt="">
+            <h2>FlashKart<sup>TM</sup></h2>
+        </div>
+        <div class="header-middle">
+            
+        </div>
+        <div class="header-right">
+            <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="User" title="User">
+            <h2>Login to your profile</h2>
+        </div>
+    </header>
+    <div class="title">
+        <h2 class="title">
+            Login to FlashKart
+        </h2>
+        <img src="{% static 'images/Flashkart_Logo.webp' %}" alt="User" title="User">
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
+
+    <footer>
+        <p>&copy; 2025 FlashKart</p>
+    </footer>
+</body>
+</html>
