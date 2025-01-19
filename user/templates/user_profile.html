@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="{% static 'images/Flashkart_Logo.webp' %}" alt="">
+            <h2>FlashKart<sup>TM</sup></h2>
+        </div>
+        <div class="header-middle">
+            
+        </div>
+        <div class="header-right">
+            <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="">
+            <div class="user-dropdown">
+                <h2>Welcome</h2>
+                <div class="dropdown-content">
+                    <a href="{% url 'logout' %}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="profile-section">
+        <div class="profile-details">
+            <h3>Profile Information</h3>
+            <p><strong>Name:</strong> {{ profile.name }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Mobile:</strong> {{ profile.mobile_number }}</p>
+            <p><strong>Address:</strong> {{ profile.address }}</p>
+            <p><strong>Available Payment Method: </strong>Card & COD</p>
+            <div class="card-details">
+                <div class="card">
+                    <div class="card-details1">
+                        <div class="card-header">
+                            <h2>Credit Card</h2>
+                            <img src="https://cdn-icons-png.flaticon.com/128/6119/6119749.png" alt="">
+                        </div>
+
+                        <div class="card-body">
+                            <!-- <p>{{ profile.card_number }}</p> -->
+                            <div class="card-number">
+                                <div class="first-four">
+                                    {{ profile.card_number|slice:":4" }} <!-- First four digits -->
+                                </div>
+                                <div class="middle-four">
+                                    {{ profile.card_number|slice:"4:-4" }} <!-- Middle digits -->
+                                </div>
+                                <div class="last-four">
+                                    {{ profile.card_number|slice:"-4:" }} <!-- Last four digits -->
+                                </div>
+                            </div>
+                            <div class="card-data">
+                                <p><strong>{{ profile.card_expiry }}</strong></p>
+                                <p class="cvv-field"><strong>CVV: <span class="cvv">XXX</span></strong></p>
+                            </div>
+                        </div>
+
+                        <div class="card-bottom">
+                            <span class="card-name">{{ profile.name }}</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="back-button">
+            <a href="javascript:history.back()" class="back-btn">← Back</a>
+        </div>
+    </section>
+    <script>
+        // JavaScript to handle fetching CVV securely
+        // This script is only required if CVV is dynamically fetched from the backend (which is not recommended in a real-world scenario)
+        document.addEventListener('DOMContentLoaded', function() {
+            const cvvElement = document.querySelector('.cvv');
+            const cvvField = document.querySelector('.cvv-field');
+
+            cvvField.addEventListener('mouseenter', function() {
+                // Display the actual CVV from the database
+                cvvElement.textContent = "{{ profile.card_cvv }}"; // Fetched dynamically from Django context
+            });
+
+            cvvField.addEventListener('mouseleave', function() {
+                // Hide the CVV again after mouse leaves
+                cvvElement.textContent = 'XXX';
+                cvvElement.style.color = 'white'; // Reset color to grey
+            });
+        });
+    </script>
+</body>
+</html>

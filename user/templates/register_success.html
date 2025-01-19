@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registeration Successfull ✅</title>
+    <link rel="stylesheet" href="{% static 'css/register_success.css' %}">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="{% static 'images/Flashkart_Logo.webp' %}" alt="">
+            <h2>FlashKart<sup>TM</sup></h2>
+        </div>
+        <div class="header-middle">
+            
+        </div>
+        <div class="header-right">
+            <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="">
+            <h2>Login to your profile</h2>
+        </div>
+    </header>
+    <section>
+        <div class="sec-img">
+            <img src="https://cdn-icons-png.flaticon.com/128/9709/9709605.png" alt="">
+        </div>
+        <p>You have registered successfully!</p>
+        <a href="{% url 'login' %}">Login</a>
+    </section>
+</body>
+</html> 
